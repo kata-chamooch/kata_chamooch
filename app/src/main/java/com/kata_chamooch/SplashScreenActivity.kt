@@ -1,13 +1,11 @@
-package com.kata_chamooch.ui.splash
+package com.kata_chamooch
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.kata_chamooch.MainActivity
-import com.kata_chamooch.R
 import java.util.*
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
