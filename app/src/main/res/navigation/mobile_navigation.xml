@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_morning_off"
-        android:name="com.kata_chamooch.ui.dashboard.DashboardFragment"
+        android:name="com.kata_chamooch.ui.morning.MorningOffFragment"
         android:label="@string/title_morning_off"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_morning_off" />
 
     <fragment
         android:id="@+id/navigation_dinner_off"
-        android:name="com.kata_chamooch.ui.dashboard.DashboardFragment"
+        android:name="com.kata_chamooch.ui.morning.MorningOffFragment"
         android:label="@string/title_dinner_off"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dinner_off" />
 
     <fragment
         android:id="@+id/navigation_personalise"
