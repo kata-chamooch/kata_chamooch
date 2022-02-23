@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_morning_off"
         android:name="com.kata_chamooch.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_morning_off"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.kata_chamooch.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_dinner_off"
+        android:name="com.kata_chamooch.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dinner_off"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_personalise"
+        android:name="com.kata_chamooch.ui.personalise.PersonaliseFragment"
+        android:label="@string/title_personalise"
+        tools:layout="@layout/fragment_personalise" />
 </navigation>

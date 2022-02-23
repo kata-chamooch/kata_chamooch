@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">kata chamooch</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_morning_off">Morning off</string>
+    <string name="title_dinner_off">Dinner off</string>
+    <string name="title_personalise">Personalise</string>
 </resources>
