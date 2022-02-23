@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "916985301173",
+    "firebase_url": "https://kata-chamooch-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kata-chamooch",
+    "storage_bucket": "kata-chamooch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916985301173:android:a30511856a6249885c16fc",
+        "android_client_info": {
+          "package_name": "com.kata_chamooch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916985301173-1j7pq8d91jgssoji1t3vcu9ocf7opqok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJf0roQ_9Dqqw3cIcSCz4SaHWarMwAL8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916985301173-1j7pq8d91jgssoji1t3vcu9ocf7opqok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
