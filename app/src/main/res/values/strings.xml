@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">kata chamooch</string>
+    <string name="app_name">kata_chamooch</string>
     <string name="title_home">Home</string>
     <string name="title_morning_off">Morning off</string>
     <string name="title_dinner_off">Dinner off</string>
     <string name="title_personalise">Personalise</string>
+    <string name="splash_second_text">Fight obesity &amp; depression</string>
 </resources>
