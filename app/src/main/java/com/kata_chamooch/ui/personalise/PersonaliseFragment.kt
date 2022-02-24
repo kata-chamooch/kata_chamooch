@@ -18,7 +18,6 @@ class PersonaliseFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentPersonaliseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
