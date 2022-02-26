@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.databinding.FragmentPersonaliseBinding
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 class PersonaliseFragment : Fragment() {
 
@@ -19,6 +23,8 @@ class PersonaliseFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPersonaliseBinding.inflate(inflater, container, false)
+        (activity as AppCompatActivity?)?.supportActionBar?.title = "Personalise your own"
+
         val root: View = binding.root
 
         return root

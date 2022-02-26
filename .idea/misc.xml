@@ -8,10 +8,13 @@
         <entry key="app/src/main/res/drawable/ic_close_selector.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/drawable/ic_dinner.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14342105263157895" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_dinner_off.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_morning_off.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/fragment_personalise.xml" value="0.22" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1703125" />
       </map>
     </option>

@@ -8,4 +8,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="image_content_des">image</string>
+    <string name="personalise_condition_text">One of our Care agent will call you and set you
+    up with a nutritionist and a medicine doctor for a zoom interview. After their feedback we will customise an app.
+    Just made for you (*charge will apply)</string>
 </resources>

@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_dinner_off"
-        android:name="com.kata_chamooch.ui.morning.MorningOffFragment"
+        android:name="com.kata_chamooch.ui.dinner.DinnerOffFragment"
         android:label="@string/title_dinner_off"
         tools:layout="@layout/fragment_dinner_off" />
 

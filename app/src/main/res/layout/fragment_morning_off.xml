@@ -87,7 +87,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="@dimen/margin_8"
-                    android:text="Launch \n Time 2 pm"
+                    android:text="Morning \n Time 8 am"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/black_1"
                     android:textStyle="bold" />
@@ -159,7 +159,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="@dimen/margin_8"
-                    android:text="Dinner \n Time 10 pm"
+                    android:text="Launch \n Time 2 pm"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/black_1"
                     android:textStyle="bold" />
@@ -230,7 +230,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="@dimen/margin_8"
-                    android:text="Snacks"
+                    android:text="Snacks\n Time 6 pm"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/black_1"
                     android:textStyle="bold" />
@@ -311,32 +311,42 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingStart="@dimen/margin_8"
+                    android:paddingEnd="@dimen/margin_8"
                     android:text="30 mins workout"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/black_1" />
 
-                <Button
+                <TextView
                     android:id="@+id/video_link_btn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/box_border"
+                    android:paddingStart="@dimen/margin_16"
+                    android:paddingTop="@dimen/margin_8"
+                    android:paddingEnd="@dimen/margin_16"
+                    android:paddingBottom="@dimen/margin_8"
                     android:text="Video link"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_1" />
 
             </LinearLayout>
         </RelativeLayout>
 
-        <Button
+        <TextView
             android:id="@+id/save_btn"
-            style="@style/ShapeAppearanceOverlay.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/box_border"
+            android:paddingStart="@dimen/margin_16"
+            android:paddingTop="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_16"
+            android:paddingBottom="@dimen/margin_8"
             android:text="Save"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/black_1" />
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

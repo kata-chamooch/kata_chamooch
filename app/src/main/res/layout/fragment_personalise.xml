@@ -1,22 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.personalise.PersonaliseFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_16">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_border"
+            android:hint="Name"
+            android:padding="@dimen/margin_8" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@drawable/box_border"
+            android:hint="Contact"
+            android:padding="@dimen/margin_8" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@drawable/box_border"
+            android:gravity="top|start"
+            android:hint="Address"
+            android:lines="2"
+            android:maxLines="3"
+            android:minLines="3"
+            android:padding="@dimen/margin_8" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            android:text="Diabetes" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_8"
+            android:text="High pressure" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="Others conditions (be brief we don't share your private conditions)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/black_1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:background="@drawable/box_border"
+            android:gravity="top|start"
+            android:lines="4"
+            android:maxLines="5"
+            android:minLines="5"
+            android:padding="@dimen/margin_8" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:text="@string/personalise_condition_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/box_border"
+            android:paddingStart="@dimen/margin_16"
+            android:paddingTop="@dimen/margin_8"
+            android:paddingEnd="@dimen/margin_16"
+            android:paddingBottom="@dimen/margin_8"
+            android:text="Submit"
+            android:textColor="@color/black_1" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
