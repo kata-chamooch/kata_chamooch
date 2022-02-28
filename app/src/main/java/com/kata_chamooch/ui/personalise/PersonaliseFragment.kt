@@ -18,16 +18,19 @@ class PersonaliseFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPersonaliseBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity?)?.supportActionBar?.title = "Personalise your own"
 
-        val root: View = binding.root
+        handleViews()
+        return binding.root
+    }
 
-        return root
+    private fun handleViews() {
+
     }
 
     override fun onDestroyView() {

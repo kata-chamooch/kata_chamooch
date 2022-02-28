@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
 
 class MorningOffFragment : Fragment() {
@@ -19,6 +20,8 @@ class MorningOffFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMorningOffBinding.inflate(inflater, container, false)
+
+        DataRepository.getFoodItemsFromDb()
 
         handleViewClick()
         return binding.root
