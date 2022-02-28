@@ -5,13 +5,18 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.kata_chamooch.data.model.PersonaliseData
 
 object DataRepository {
 
-    fun getFoodItemsFromDb(){
-        val ref = FirebaseDatabase.getInstance().getReference("dinner-off").child("fri")
+    private val mainRef: FirebaseDatabase = FirebaseDatabase.getInstance()
 
-        val menuListener = object : ValueEventListener{
+    fun getMainRef(): FirebaseDatabase = mainRef
+
+    fun getFoodItemsFromDb() {
+        val ref = mainRef.getReference("dinner-off").child("fri")
+
+        val menuListener = object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user = snapshot.value as String
@@ -19,11 +24,26 @@ object DataRepository {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("retData", error.message+" "+error.details)
+                Log.d("retData", error.message + " " + error.details)
             }
 
         }
 
         ref.addListenerForSingleValueEvent(menuListener)
+    }
+
+    fun postUserPersonaliseData(personaliseData: PersonaliseData, callback: (msg: String) -> Unit) {
+        mainRef.getReference("user-info").child(personaliseData.contact)
+            .setValue(personaliseData).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val msg = "Data saved successfully"
+                    Log.d("TAG", msg)
+                    callback(msg)
+                } else {
+                    val msg = it.exception?.message ?: "Error occurred! try again please"
+                    Log.d("TAG", msg)
+                    callback(msg)
+                }
+            }
     }
 }

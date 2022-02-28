@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/box_border"
             android:hint="Name"
+            android:maxLines="2"
             android:padding="@dimen/margin_8" />
 
         <EditText
@@ -26,6 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8"
+            android:inputType="numberDecimal"
+            android:maxLength="13"
             android:background="@drawable/box_border"
             android:hint="Contact Number"
             android:padding="@dimen/margin_8" />
