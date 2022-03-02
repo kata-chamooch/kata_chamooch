@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.data.model.PersonaliseData
 import com.kata_chamooch.databinding.FragmentPersonaliseBinding
+import java.lang.StringBuilder
 
 
 class PersonaliseFragment : Fragment() {
@@ -40,13 +41,18 @@ class PersonaliseFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                val number = contactNumED.text.toString().trim()
+                var number = contactNumED.text.toString().trim()
                 if (number.isEmpty()) {
                     contactNumED.error = "Contact number is required!"
                     return@setOnClickListener
                 } else if (number.length < 11 && number.length != 13) {
                     contactNumED.error = "Invalid contact number!"
                     return@setOnClickListener
+                }
+                if (!number.startsWith("88")){
+                    val stBuilder = StringBuilder()
+                    stBuilder.append("88").append(number)
+                    number = stBuilder.toString()
                 }
 
                 val address = addressED.text.toString().trim()

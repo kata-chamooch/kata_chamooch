@@ -6,5 +6,6 @@ data class PersonaliseData(
     val address: String,
     val hasDiabetes: Boolean,
     val hasHighPressure: Boolean,
-    val otherConditions: String
+    val otherConditions: String,
+    val status: Boolean = false
 )
