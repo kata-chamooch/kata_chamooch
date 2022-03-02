@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.kata_chamooch.core.DateManager
-import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
+import android.os.CountDownTimer
+import android.util.Log
+import java.util.concurrent.TimeUnit
+
 
 class MorningOffFragment : Fragment() {
 
@@ -56,7 +58,43 @@ class MorningOffFragment : Fragment() {
             it.isSelected = !it.isSelected
             binding.snacksCheckImg.isSelected = false;
         }
+
+        binding.startCounterBtn.setOnClickListener {
+            handleCounterDownTimer(16*60*60*1000)
+        }
     }
+
+    private fun handleCounterDownTimer(duration: Long) {
+        object : CountDownTimer(duration, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                //Convert milliseconds into hour,minute and seconds
+                //Convert milliseconds into hour,minute and seconds
+                val hms = String.format(
+                    "%02d:%02d:%02d",
+                    TimeUnit.MILLISECONDS.toHours(
+                        millisUntilFinished
+                    ),
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                        TimeUnit.MILLISECONDS.toHours(
+                            millisUntilFinished
+                        )
+                    ),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                        TimeUnit.MILLISECONDS.toMinutes(
+                            millisUntilFinished
+                        )
+                    )
+                )
+                binding.countdownTxt.setText(hms) //set text
+
+            }
+
+            override fun onFinish() {
+                binding.countdownTxt.text = "00:00:00"
+            }
+        }.start()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
