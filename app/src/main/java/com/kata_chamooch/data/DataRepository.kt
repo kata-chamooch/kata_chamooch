@@ -19,8 +19,8 @@ object DataRepository {
         val menuListener = object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.value as String
-                Log.d("retData", user)
+                val user = snapshot.value as? String
+                Log.d("retData", user ?: "")
             }
 
             override fun onCancelled(error: DatabaseError) {
