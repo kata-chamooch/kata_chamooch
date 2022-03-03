@@ -31,6 +31,7 @@
 
 
             <TextView
+                android:id="@+id/countdown_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

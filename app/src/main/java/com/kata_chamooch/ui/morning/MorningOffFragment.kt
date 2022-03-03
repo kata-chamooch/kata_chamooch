@@ -1,13 +1,13 @@
 package com.kata_chamooch.ui.morning
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
-import android.os.CountDownTimer
-import android.util.Log
 import java.util.concurrent.TimeUnit
 
 
@@ -17,15 +17,21 @@ class MorningOffFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private var countDownTimer: CountDownTimer? = null
+    private var timerStartFlag: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMorningOffBinding.inflate(inflater, container, false)
-
-        handleViewClick()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleViewClick()
     }
 
     private fun handleViewClick() {
@@ -60,15 +66,26 @@ class MorningOffFragment : Fragment() {
         }
 
         binding.startCounterBtn.setOnClickListener {
-            handleCounterDownTimer(16*60*60*1000)
+            handleCounterDownTimer(16 * 60 * 60 * 1000)
+        }
+        binding.stopCounterBtn.setOnClickListener {
+            resetTimer()
         }
     }
 
+    private fun resetTimer() {
+        binding.countdownTxt.text = "00:00:00"
+        timerStartFlag = false
+        countDownTimer?.cancel()
+    }
+
     private fun handleCounterDownTimer(duration: Long) {
-        object : CountDownTimer(duration, 1000) {
+        if (timerStartFlag) {
+            return
+        }
+        timerStartFlag = true
+        countDownTimer = object : CountDownTimer(duration, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                //Convert milliseconds into hour,minute and seconds
-                //Convert milliseconds into hour,minute and seconds
                 val hms = String.format(
                     "%02d:%02d:%02d",
                     TimeUnit.MILLISECONDS.toHours(
@@ -85,12 +102,11 @@ class MorningOffFragment : Fragment() {
                         )
                     )
                 )
-                binding.countdownTxt.setText(hms) //set text
-
+                binding.countdownTxt.text = hms
             }
 
             override fun onFinish() {
-                binding.countdownTxt.text = "00:00:00"
+                resetTimer()
             }
         }.start()
     }
@@ -98,6 +114,7 @@ class MorningOffFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        countDownTimer?.onFinish()
         _binding = null
     }
 }
