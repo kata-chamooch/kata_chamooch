@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.kata_chamooch.core.DateManager
+import com.kata_chamooch.core.DateManager.getTodayAsString
+import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
+import com.kata_chamooch.prefs
 import java.util.concurrent.TimeUnit
 
 
 class MorningOffFragment : Fragment() {
-
     private var _binding: FragmentMorningOffBinding? = null
 
     private val binding get() = _binding!!
@@ -31,7 +34,21 @@ class MorningOffFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getTimeFromPref()
         handleViewClick()
+    }
+
+    private fun getTimeFromPref() {
+        val startedTime = prefs.getStringData(AppPreference.MORNING_OFF_START_TIME)
+        if (!startedTime.isNullOrEmpty()) {
+            val getDiff = DateManager.getDifference(startedTime, getTodayAsString())
+            Log.d("Logger", "getTimeFromPref: $getDiff")
+            if (getDiff > 0) {
+                val totalDif = TimeUnit.HOURS.toMillis(16) - getDiff
+                handleCounterDownTimer(totalDif, false)
+                timerStartFlag = true
+            }
+        }
     }
 
     private fun handleViewClick() {
@@ -66,7 +83,7 @@ class MorningOffFragment : Fragment() {
         }
 
         binding.startCounterBtn.setOnClickListener {
-            handleCounterDownTimer(16 * 60 * 60 * 1000)
+            handleCounterDownTimer(TimeUnit.HOURS.toMillis(16), true)
         }
         binding.stopCounterBtn.setOnClickListener {
             resetTimer()
@@ -74,12 +91,14 @@ class MorningOffFragment : Fragment() {
     }
 
     private fun resetTimer() {
+        Log.d("Logger", "resetTimer: called")
         binding.countdownTxt.text = "00:00:00"
         timerStartFlag = false
         countDownTimer?.cancel()
+        prefs.clearPref(AppPreference.MORNING_OFF_START_TIME)
     }
 
-    private fun handleCounterDownTimer(duration: Long) {
+    private fun handleCounterDownTimer(duration: Long, shouldSaveStartTime: Boolean) {
         if (timerStartFlag) {
             return
         }
@@ -109,12 +128,16 @@ class MorningOffFragment : Fragment() {
                 resetTimer()
             }
         }.start()
+        if (shouldSaveStartTime) {
+            prefs.setStringData(AppPreference.MORNING_OFF_START_TIME, getTodayAsString())
+        }
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        countDownTimer?.onFinish()
+        timerStartFlag = false
+        countDownTimer?.cancel()
         _binding = null
     }
 }

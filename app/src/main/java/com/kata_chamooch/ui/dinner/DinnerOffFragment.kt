@@ -2,11 +2,15 @@ package com.kata_chamooch.ui.dinner
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.kata_chamooch.core.DateManager
+import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentDinnerOffBinding
+import com.kata_chamooch.prefs
 import java.util.concurrent.TimeUnit
 
 private var _binding: FragmentDinnerOffBinding? = null
@@ -29,7 +33,21 @@ class DinnerOffFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getTimeFromPref()
         handleViewClick()
+    }
+
+    private fun getTimeFromPref() {
+        val startedTime = prefs.getStringData(AppPreference.DINNER_OFF_START_TIME)
+        if (!startedTime.isNullOrEmpty()) {
+            val getDiff = DateManager.getDifference(startedTime, DateManager.getTodayAsString())
+            Log.d("Logger", "getTimeFromPref: $getDiff")
+            if (getDiff > 0) {
+                val totalDif = TimeUnit.HOURS.toMillis(16) - getDiff
+                handleCounterDownTimer(totalDif, false)
+                timerStartFlag = true
+            }
+        }
     }
 
     private fun handleViewClick() {
@@ -64,7 +82,7 @@ class DinnerOffFragment : Fragment() {
         }
 
         binding.startCounterBtn.setOnClickListener {
-            handleCounterDownTimer(16 * 60 * 60 * 1000)
+            handleCounterDownTimer(TimeUnit.HOURS.toMillis(16), true)
         }
         binding.stopCounterBtn.setOnClickListener {
             resetTimer()
@@ -72,12 +90,14 @@ class DinnerOffFragment : Fragment() {
     }
 
     private fun resetTimer() {
+        Log.d("Logger", "resetTimer: called")
         binding.countdownTxt.text = "00:00:00"
         timerStartFlag = false
         countDownTimer?.cancel()
+        prefs.clearPref(AppPreference.DINNER_OFF_START_TIME)
     }
 
-    private fun handleCounterDownTimer(duration: Long) {
+    private fun handleCounterDownTimer(duration: Long, shouldSaveStartTime: Boolean) {
         if (timerStartFlag) {
             return
         }
@@ -107,12 +127,19 @@ class DinnerOffFragment : Fragment() {
                 resetTimer()
             }
         }.start()
+        if (shouldSaveStartTime) {
+            prefs.setStringData(
+                AppPreference.DINNER_OFF_START_TIME,
+                DateManager.getTodayAsString()
+            )
+        }
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        countDownTimer?.onFinish()
+        timerStartFlag = false
+        countDownTimer?.cancel()
         _binding = null
     }
 }
