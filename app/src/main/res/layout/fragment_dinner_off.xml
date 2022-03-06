@@ -11,361 +11,380 @@
         android:padding="@dimen/margin_16"
         tools:context=".ui.morning.MorningOffFragment">
 
-
-        <LinearLayout
-            android:id="@+id/counter_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Time left to end"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/countdown_txt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/margin_16"
-                android:layout_weight="1.5"
-                android:background="@drawable/box_border"
-                android:gravity="center"
-                android:padding="@dimen/margin_16"
-                android:text="00:00:00"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/counter_control_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/counter_layout"
-            android:layout_marginTop="@dimen/margin_8"
-            android:gravity="end"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/start_counter_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/box_border"
-                android:paddingStart="@dimen/margin_20"
-                android:paddingTop="@dimen/margin_8"
-                android:paddingEnd="@dimen/margin_20"
-                android:paddingBottom="@dimen/margin_8"
-                android:text="Start"
-                android:textAllCaps="false"
-                android:textColor="@color/black_1" />
-
-            <TextView
-                android:id="@+id/stop_counter_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_16"
-                android:background="@drawable/box_border"
-                android:paddingStart="@dimen/margin_20"
-                android:paddingTop="@dimen/margin_8"
-                android:paddingEnd="@dimen/margin_20"
-                android:paddingBottom="@dimen/margin_8"
-                android:text="Stop"
-                android:textAllCaps="false"
-                android:textColor="@color/black_1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/center_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/counter_control_layout"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/box_border"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_8"
-                    android:text="Launch \n Time 2 pm"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:padding="@dimen/margin_8"
-                    android:text="Stream rice, chicken curry, beaf"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/launch_check_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_check_selector" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/launch_cross_img"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_close_selector" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/border_color" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_8"
-                    android:text="Dinner \n Time 10 pm"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:padding="@dimen/margin_8"
-                    android:text="Stream rice, chicken curry, beaf"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/dinner_check_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_check_selector" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/dinner_cross_img"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_close_selector" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/border_color" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_8"
-                    android:text="Snacks"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:padding="@dimen/margin_8"
-                    android:text="Stream rice, chicken curry, beaf"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/snacks_check_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_check_selector" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/border_color" />
-
-
-                <ImageView
-                    android:id="@+id/snacks_cross_img"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/image_content_des"
-                    android:padding="@dimen/margin_16"
-                    android:src="@drawable/ic_close_selector" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_centerInParent="true"
+            android:progress="100"
+            android:indeterminate="true"
+            android:visibility="visible" />
 
         <RelativeLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/center_layout"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/work_out_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Work-out"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/black_1"
-                android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
             <LinearLayout
+                android:id="@+id/counter_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/work_out_title"
                 android:orientation="horizontal">
 
-                <CheckBox
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:paddingStart="@dimen/margin_8"
-                    android:paddingEnd="@dimen/margin_8"
-                    android:text="30 mins workout"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/black_1" />
+                    android:gravity="center"
+                    android:text="Time left to end"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
 
                 <TextView
-                    android:id="@+id/video_link_btn"
+                    android:id="@+id/countdown_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:layout_weight="1.5"
+                    android:background="@drawable/box_border"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_16"
+                    android:text="00:00:00"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/counter_control_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/counter_layout"
+                android:layout_marginTop="@dimen/margin_8"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/start_counter_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/box_border"
-                    android:paddingStart="@dimen/margin_16"
+                    android:paddingStart="@dimen/margin_20"
                     android:paddingTop="@dimen/margin_8"
-                    android:paddingEnd="@dimen/margin_16"
+                    android:paddingEnd="@dimen/margin_20"
                     android:paddingBottom="@dimen/margin_8"
-                    android:text="Video link"
+                    android:text="Start"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_1" />
+
+                <TextView
+                    android:id="@+id/stop_counter_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16"
+                    android:background="@drawable/box_border"
+                    android:paddingStart="@dimen/margin_20"
+                    android:paddingTop="@dimen/margin_8"
+                    android:paddingEnd="@dimen/margin_20"
+                    android:paddingBottom="@dimen/margin_8"
+                    android:text="Stop"
                     android:textAllCaps="false"
                     android:textColor="@color/black_1" />
 
             </LinearLayout>
-        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/box_border"
-            android:paddingStart="@dimen/margin_16"
-            android:paddingTop="@dimen/margin_8"
-            android:paddingEnd="@dimen/margin_16"
-            android:paddingBottom="@dimen/margin_8"
-            android:text="Save"
-            android:textAllCaps="false"
-            android:textColor="@color/black_1" />
+            <LinearLayout
+                android:id="@+id/center_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/counter_control_layout"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/box_border"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_8"
+                        android:text="Morning \n Time 8 am"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+                    <TextView
+                        android:id="@+id/morning_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:padding="@dimen/margin_8"
+                        android:text="Stream rice, chicken curry, beaf"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/launch_check_img"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_check_selector" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/launch_cross_img"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_close_selector" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_color" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_8"
+                        android:text="Launch \n Time 2 pm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+                    <TextView
+                        android:id="@+id/launch_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:padding="@dimen/margin_8"
+                        android:text="Stream rice, chicken curry, beaf"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/dinner_check_img"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_check_selector" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/dinner_cross_img"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_close_selector" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/border_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/margin_8"
+                        android:text="Snacks\n Time 6 pm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+                    <TextView
+                        android:id="@+id/snacks_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:padding="@dimen/margin_8"
+                        android:text="Stream rice, chicken curry, beaf"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/snacks_check_img"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_check_selector" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/border_color" />
+
+
+                    <ImageView
+                        android:id="@+id/snacks_cross_img"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/image_content_des"
+                        android:padding="@dimen/margin_16"
+                        android:src="@drawable/ic_close_selector" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/center_layout"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/work_out_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Work-out"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black_1"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/work_out_title"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/margin_8"
+                        android:paddingEnd="@dimen/margin_8"
+                        android:text="30 mins workout"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@color/black_1" />
+
+                    <TextView
+                        android:id="@+id/video_link_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/box_border"
+                        android:paddingStart="@dimen/margin_16"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingEnd="@dimen/margin_16"
+                        android:paddingBottom="@dimen/margin_8"
+                        android:text="Video link"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black_1" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/box_border"
+                android:paddingStart="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_8"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/black_1" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

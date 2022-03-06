@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.core.DateManager
+import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentDinnerOffBinding
 import com.kata_chamooch.prefs
@@ -18,6 +20,8 @@ private val binding get() = _binding!!
 
 private var countDownTimer: CountDownTimer? = null
 private var timerStartFlag: Boolean = false
+
+private const val type = "dinner-off"
 
 class DinnerOffFragment : Fragment() {
 
@@ -33,8 +37,26 @@ class DinnerOffFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        DataRepository.getFoodItemsFromDb("fri", type, ::setDataToTheView)
         getTimeFromPref()
         handleViewClick()
+    }
+
+    private fun setDataToTheView(data: Map<String, String>?, msg: String?) {
+        binding.progressBar.visibility = View.GONE
+        binding.mainLayout.visibility = View.VISIBLE
+
+        data?.let {
+            binding.apply {
+                morningMenu.text = data["breakfast"]
+                launchMenu.text = data["launch"]
+                snacksMenu.text = data["snacks"]
+            }
+        }
+
+        msg?.let {
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun getTimeFromPref() {

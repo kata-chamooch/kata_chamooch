@@ -6,14 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.core.DateManager
 import com.kata_chamooch.core.DateManager.getTodayAsString
+import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
 import com.kata_chamooch.prefs
 import java.util.concurrent.TimeUnit
 
+private const val type = "morning-off"
 
 class MorningOffFragment : Fragment() {
     private var _binding: FragmentMorningOffBinding? = null
@@ -22,7 +25,6 @@ class MorningOffFragment : Fragment() {
 
     private var countDownTimer: CountDownTimer? = null
     private var timerStartFlag: Boolean = false
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,8 +36,26 @@ class MorningOffFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        DataRepository.getFoodItemsFromDb("fri", type, ::setDataToTheView)
         getTimeFromPref()
         handleViewClick()
+    }
+
+    private fun setDataToTheView(data: Map<String, String>?, msg: String?) {
+        binding.progressBar.visibility = View.GONE
+        binding.mainLayout.visibility = View.VISIBLE
+
+        data?.let {
+            binding.apply {
+                launchMenu.text = data["launch"]
+                dinnerMenu.text = data["dinner"]
+                snacksMenu.text = data["snacks"]
+            }
+        }
+
+        msg?.let {
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun getTimeFromPref() {

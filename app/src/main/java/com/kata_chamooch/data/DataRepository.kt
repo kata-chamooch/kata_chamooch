@@ -13,20 +13,23 @@ object DataRepository {
 
     fun getMainRef(): FirebaseDatabase = mainRef
 
-    fun getFoodItemsFromDb() {
-        val ref = mainRef.getReference("dinner-off").child("fri")
+    fun getFoodItemsFromDb(
+        datePrefix: String,
+        type: String,
+        callback: (data: Map<String, String>?, msg: String?) -> Unit
+    ) {
+        val ref = mainRef.getReference("meal").child(datePrefix).child(type)
 
         val menuListener = object : ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val user = snapshot.value as? String
-                Log.d("retData", user ?: "")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val data = dataSnapshot.value as? Map<String, String>
+                callback(data, null)
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("retData", error.message + " " + error.details)
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("retData", databaseError.message + " " + databaseError.details)
+                callback(null, databaseError.message)
             }
-
         }
 
         ref.addListenerForSingleValueEvent(menuListener)
