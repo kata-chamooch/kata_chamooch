@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit
 object DateManager {
     private const val TAG = "dateTimeLogger"
 
-    private val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss", Locale.ENGLISH)
+    private val simpleDateFormat = SimpleDateFormat("dd/M/yyyy HH:mm:ss", Locale.UK)
 
-    fun getTodayName(): String {
+    fun getTodayPrefix(): String {
         val sdf = SimpleDateFormat("EEE", Locale.ENGLISH)
         val d = Date()
         val dayOfTheWeek: String = sdf.format(d)
@@ -26,6 +26,8 @@ object DateManager {
         val startDate = getTodayAsDate(startDateInString)
         val endDate = getTodayAsDate(endDateInString)
 
+        Log.d(TAG, "getDifference: $startDateInString $endDateInString")
+        
         if (startDate != null && endDate != null) {
             var different = endDate.time - startDate.time
             val secondsInMilli: Long = 1000

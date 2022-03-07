@@ -13,6 +13,8 @@ object DataRepository {
 
     fun getMainRef(): FirebaseDatabase = mainRef
 
+    const val VIDEO_LINK_REF = "videoLink"
+
     fun getFoodItemsFromDb(
         datePrefix: String,
         type: String,
@@ -48,5 +50,28 @@ object DataRepository {
                     callback(msg)
                 }
             }
+    }
+
+    fun getWorkOutVideoLink(
+        datePrefix: String,
+        type: String,
+        callback: (videoId: String?) -> Unit
+    ) {
+        val ref = mainRef.getReference("meal").child(datePrefix).child(VIDEO_LINK_REF)
+
+        val menuListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val videoId = dataSnapshot.value as? String
+                Log.d("retData", videoId.toString())
+                callback(videoId)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("retData", databaseError.message + " " + databaseError.details)
+                callback(null)
+            }
+        }
+
+        ref.addListenerForSingleValueEvent(menuListener)
     }
 }

@@ -15,6 +15,11 @@ import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
 import com.kata_chamooch.prefs
 import java.util.concurrent.TimeUnit
+import android.R.id
+
+import android.content.Intent
+import android.net.Uri
+
 
 private const val type = "morning-off"
 
@@ -25,18 +30,21 @@ class MorningOffFragment : Fragment() {
 
     private var countDownTimer: CountDownTimer? = null
     private var timerStartFlag: Boolean = false
+    private lateinit var datePrefix: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMorningOffBinding.inflate(inflater, container, false)
+        datePrefix = DateManager.getTodayPrefix()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        DataRepository.getFoodItemsFromDb("fri", type, ::setDataToTheView)
+        DataRepository.getFoodItemsFromDb(datePrefix, type, ::setDataToTheView)
         getTimeFromPref()
         handleViewClick()
     }
@@ -74,32 +82,32 @@ class MorningOffFragment : Fragment() {
     private fun handleViewClick() {
         binding.launchCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.launchCrossImg.isSelected = false;
+            binding.launchCrossImg.isSelected = false
         }
 
         binding.launchCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.launchCheckImg.isSelected = false;
+            binding.launchCheckImg.isSelected = false
         }
 
         binding.dinnerCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.dinnerCrossImg.isSelected = false;
+            binding.dinnerCrossImg.isSelected = false
         }
 
         binding.dinnerCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.dinnerCheckImg.isSelected = false;
+            binding.dinnerCheckImg.isSelected = false
         }
 
         binding.snacksCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.snacksCrossImg.isSelected = false;
+            binding.snacksCrossImg.isSelected = false
         }
 
         binding.snacksCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.snacksCheckImg.isSelected = false;
+            binding.snacksCheckImg.isSelected = false
         }
 
         binding.startCounterBtn.setOnClickListener {
@@ -107,6 +115,32 @@ class MorningOffFragment : Fragment() {
         }
         binding.stopCounterBtn.setOnClickListener {
             resetTimer()
+        }
+
+        binding.videoLinkBtn.setOnClickListener {
+            DataRepository.getWorkOutVideoLink(datePrefix, type, ::redirectUserToVideoPage)
+        }
+        binding.saveBtn.setOnClickListener {
+            calculateUserPoint()
+        }
+    }
+
+    private fun calculateUserPoint() {
+        var point = 0
+        if (binding.dinnerCheckImg.isSelected) point++
+        if (binding.launchCheckImg.isSelected) point++
+        if (binding.snacksCheckImg.isSelected) point++
+        if (binding.checkbox.isChecked) point++
+        Log.d("pointCounter", "calculateUserPoint: $point")
+    }
+
+    private fun redirectUserToVideoPage(videoId: String?) {
+        if (videoId != null) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://$videoId"))
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(), "Error occurred! please try again", Toast.LENGTH_LONG)
+                .show()
         }
     }
 

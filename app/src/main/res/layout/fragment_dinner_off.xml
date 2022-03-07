@@ -24,7 +24,7 @@
             android:id="@+id/main_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/counter_layout"
@@ -149,7 +149,7 @@
 
 
                     <ImageView
-                        android:id="@+id/launch_check_img"
+                        android:id="@+id/morning_check_img"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
@@ -164,7 +164,7 @@
 
 
                     <ImageView
-                        android:id="@+id/launch_cross_img"
+                        android:id="@+id/morning_cross_img"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
@@ -222,7 +222,7 @@
 
 
                     <ImageView
-                        android:id="@+id/dinner_check_img"
+                        android:id="@+id/launch_check_img"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
@@ -237,7 +237,7 @@
 
 
                     <ImageView
-                        android:id="@+id/dinner_cross_img"
+                        android:id="@+id/launch_cross_img"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_gravity="center"
@@ -344,6 +344,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/checkbox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

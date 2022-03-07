@@ -1,5 +1,7 @@
 package com.kata_chamooch.ui.dinner
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -22,6 +24,7 @@ private var countDownTimer: CountDownTimer? = null
 private var timerStartFlag: Boolean = false
 
 private const val type = "dinner-off"
+private lateinit var datePrefix: String
 
 class DinnerOffFragment : Fragment() {
 
@@ -31,7 +34,7 @@ class DinnerOffFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentDinnerOffBinding.inflate(inflater, container, false)
-
+        datePrefix = DateManager.getTodayPrefix()
         return binding.root
     }
 
@@ -75,32 +78,32 @@ class DinnerOffFragment : Fragment() {
     private fun handleViewClick() {
         binding.launchCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.launchCrossImg.isSelected = false;
+            binding.launchCrossImg.isSelected = false
         }
 
         binding.launchCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.launchCheckImg.isSelected = false;
+            binding.launchCheckImg.isSelected = false
         }
 
-        binding.dinnerCheckImg.setOnClickListener {
+        binding.morningCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.dinnerCrossImg.isSelected = false;
+            binding.morningCrossImg.isSelected = false
         }
 
-        binding.dinnerCrossImg.setOnClickListener {
+        binding.morningCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.dinnerCheckImg.isSelected = false;
+            binding.morningCheckImg.isSelected = false
         }
 
         binding.snacksCheckImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.snacksCrossImg.isSelected = false;
+            binding.snacksCrossImg.isSelected = false
         }
 
         binding.snacksCrossImg.setOnClickListener {
             it.isSelected = !it.isSelected
-            binding.snacksCheckImg.isSelected = false;
+            binding.snacksCheckImg.isSelected = false
         }
 
         binding.startCounterBtn.setOnClickListener {
@@ -109,8 +112,33 @@ class DinnerOffFragment : Fragment() {
         binding.stopCounterBtn.setOnClickListener {
             resetTimer()
         }
+        binding.videoLinkBtn.setOnClickListener {
+            DataRepository.getWorkOutVideoLink(datePrefix, type, ::redirectUserToVideoPage)
+        }
+
+        binding.saveBtn.setOnClickListener {
+            calculateUserPoint()
+        }
     }
 
+    private fun calculateUserPoint() {
+        var point = 0
+        if (binding.morningCheckImg.isSelected) point++
+        if (binding.launchCheckImg.isSelected) point++
+        if (binding.snacksCheckImg.isSelected) point++
+        if (binding.checkbox.isChecked) point++
+        Log.d("pointCounter", "calculateUserPoint: $point")
+    }
+
+    private fun redirectUserToVideoPage(videoId: String?) {
+        if (videoId != null) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://$videoId"))
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(), "Error occurred! please try again", Toast.LENGTH_LONG)
+                .show()
+        }
+    }
     private fun resetTimer() {
         Log.d("Logger", "resetTimer: called")
         binding.countdownTxt.text = "00:00:00"
