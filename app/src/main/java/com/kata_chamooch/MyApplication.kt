@@ -1,6 +1,7 @@
 package com.kata_chamooch
 
 import android.app.Application
+import com.google.firebase.database.FirebaseDatabase
 import com.kata_chamooch.data.local.AppPreference
 
 val prefs: AppPreference by lazy {
@@ -19,5 +20,6 @@ class MyApplication : Application() {
 
         instance = this
         prefs = AppPreference(applicationContext)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }

@@ -123,10 +123,34 @@ class DinnerOffFragment : Fragment() {
 
     private fun calculateUserPoint() {
         var point = 0
-        if (binding.morningCheckImg.isSelected) point++
-        if (binding.launchCheckImg.isSelected) point++
-        if (binding.snacksCheckImg.isSelected) point++
-        if (binding.checkbox.isChecked) point++
+        if (binding.morningCheckImg.isSelected) {
+            point++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_BF, 1)
+        }
+        if (binding.morningCrossImg.isSelected) {
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_BF, 0)
+        }
+
+        if (binding.launchCheckImg.isSelected) {
+            point++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_LA, 1)
+        }
+        if (binding.launchCrossImg.isSelected) {
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_LA, 0)
+        }
+
+
+        if (binding.snacksCheckImg.isSelected) {
+            point++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_SN, 1)
+        }
+        if (binding.snacksCrossImg.isSelected) {
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_SN, 0)
+        }
+        if (binding.checkbox.isChecked) {
+            point++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_WO, 1)
+        }
         Log.d("pointCounter", "calculateUserPoint: $point")
     }
 

@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_personalise"
         android:title="@string/title_personalise" />
 
+    <item
+        android:id="@+id/navigation_bazar"
+        android:icon="@drawable/ic_shopping"
+        android:title="@string/title_bazar" />
+
 </menu>

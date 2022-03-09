@@ -28,4 +28,10 @@
         android:name="com.kata_chamooch.ui.personalise.PersonaliseFragment"
         android:label="@string/title_personalise"
         tools:layout="@layout/fragment_personalise" />
+
+    <fragment
+        android:id="@+id/navigation_bazar"
+        android:name="com.kata_chamooch.ui.bazar.BazarFragment"
+        android:label="@string/title_bazar"
+        tools:layout="@layout/fragment_bazar" />
 </navigation>

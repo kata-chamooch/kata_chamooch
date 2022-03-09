@@ -9,6 +9,7 @@ object DateManager {
     private const val TAG = "dateTimeLogger"
 
     private val simpleDateFormat = SimpleDateFormat("dd/M/yyyy HH:mm:ss", Locale.UK)
+    private val simpleDateFormatTwo = SimpleDateFormat("dd/M/yyyy", Locale.UK)
 
     fun getTodayPrefix(): String {
         val sdf = SimpleDateFormat("EEE", Locale.ENGLISH)
@@ -20,6 +21,7 @@ object DateManager {
     }
 
     fun getTodayAsString(): String = simpleDateFormat.format(Date())
+    fun getTodayDateAsString(): String = simpleDateFormatTwo.format(Date())
     private fun getTodayAsDate(dateInString: String): Date? = simpleDateFormat.parse(dateInString)
 
     fun getDifference(startDateInString: String, endDateInString: String): Long {

@@ -1,5 +1,7 @@
 package com.kata_chamooch.ui.morning
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -10,15 +12,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.core.DateManager
 import com.kata_chamooch.core.DateManager.getTodayAsString
+import com.kata_chamooch.core.DateManager.getTodayDateAsString
 import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
 import com.kata_chamooch.prefs
 import java.util.concurrent.TimeUnit
-import android.R.id
-
-import android.content.Intent
-import android.net.Uri
 
 
 private const val type = "morning-off"
@@ -127,10 +126,36 @@ class MorningOffFragment : Fragment() {
 
     private fun calculateUserPoint() {
         var point = 0
-        if (binding.dinnerCheckImg.isSelected) point++
-        if (binding.launchCheckImg.isSelected) point++
-        if (binding.snacksCheckImg.isSelected) point++
-        if (binding.checkbox.isChecked) point++
+
+        if (binding.dinnerCheckImg.isSelected) {
+            point++
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 1)
+        }
+        if (binding.dinnerCrossImg.isSelected) {
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 0)
+        }
+
+        if (binding.launchCheckImg.isSelected) {
+            point++
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 1)
+        }
+        if (binding.launchCrossImg.isSelected) {
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 0)
+        }
+
+
+        if (binding.snacksCheckImg.isSelected) {
+            point++
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 1)
+        }
+        if (binding.snacksCrossImg.isSelected) {
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 0)
+        }
+        if (binding.checkbox.isChecked) {
+            point++
+            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_WO, 1)
+        }
+
         Log.d("pointCounter", "calculateUserPoint: $point")
     }
 

@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home,
                 R.id.navigation_morning_off,
                 R.id.navigation_dinner_off,
-                R.id.navigation_personalise
+                R.id.navigation_personalise,
+                R.id.navigation_bazar,
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
