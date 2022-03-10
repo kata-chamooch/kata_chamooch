@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.core.DateManager
 import com.kata_chamooch.core.DateManager.getTodayAsString
-import com.kata_chamooch.core.DateManager.getTodayDateAsString
 import com.kata_chamooch.data.DataRepository
 import com.kata_chamooch.data.local.AppPreference
 import com.kata_chamooch.databinding.FragmentMorningOffBinding
@@ -35,7 +34,7 @@ class MorningOffFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMorningOffBinding.inflate(inflater, container, false)
         datePrefix = DateManager.getTodayPrefix()
         return binding.root
@@ -44,6 +43,7 @@ class MorningOffFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         DataRepository.getFoodItemsFromDb(datePrefix, type, ::setDataToTheView)
+        checkPreference()
         getTimeFromPref()
         handleViewClick()
     }
@@ -117,46 +117,109 @@ class MorningOffFragment : Fragment() {
         }
 
         binding.videoLinkBtn.setOnClickListener {
-            DataRepository.getWorkOutVideoLink(datePrefix, type, ::redirectUserToVideoPage)
+            DataRepository.getWorkOutVideoLink(datePrefix, ::redirectUserToVideoPage)
         }
         binding.saveBtn.setOnClickListener {
             calculateUserPoint()
         }
     }
 
+    private fun checkPreference() {
+        val morningOffBF =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_DI)
+        if (morningOffBF != -1) {
+            binding.dinnerCrossImg.isEnabled = false
+            binding.dinnerCheckImg.isEnabled = false
+            if (morningOffBF == 1) {
+                binding.dinnerCheckImg.isSelected = true
+            } else {
+                binding.dinnerCrossImg.isSelected = true
+            }
+        }
+
+        val morningOffLA =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_LA)
+        if (morningOffLA != -1) {
+            binding.launchCheckImg.isEnabled = false
+            binding.launchCrossImg.isEnabled = false
+            if (morningOffLA == 1) {
+                binding.launchCheckImg.isSelected = true
+            } else {
+                binding.launchCrossImg.isSelected = true
+            }
+        }
+
+        val morningOffSN =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_SN)
+        if (morningOffSN != -1) {
+            binding.snacksCheckImg.isEnabled = false
+            binding.snacksCrossImg.isEnabled = false
+            if (morningOffSN == 1) {
+                binding.snacksCheckImg.isSelected = true
+            } else {
+                binding.snacksCrossImg.isSelected = true
+            }
+        }
+
+        val morningOffWO =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_WO)
+        if (morningOffWO != -1) {
+            binding.checkbox.isEnabled = false
+            if (morningOffWO == 1) {
+                binding.checkbox.isChecked = true
+            }
+        }
+    }
+
+
     private fun calculateUserPoint() {
         var point = 0
-
-        if (binding.dinnerCheckImg.isSelected) {
+        var changeDetect = 0
+        if (binding.dinnerCheckImg.isSelected && binding.dinnerCheckImg.isEnabled) {
             point++
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 1)
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 1)
         }
-        if (binding.dinnerCrossImg.isSelected) {
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 0)
+        if (binding.dinnerCrossImg.isSelected && binding.dinnerCrossImg.isEnabled) {
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_DI, 0)
         }
 
-        if (binding.launchCheckImg.isSelected) {
+        if (binding.launchCheckImg.isSelected && binding.launchCheckImg.isEnabled) {
             point++
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 1)
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 1)
         }
-        if (binding.launchCrossImg.isSelected) {
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 0)
+        if (binding.launchCrossImg.isSelected && binding.launchCrossImg.isEnabled) {
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_LA, 0)
         }
 
 
-        if (binding.snacksCheckImg.isSelected) {
+        if (binding.snacksCheckImg.isSelected && binding.snacksCheckImg.isEnabled) {
             point++
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 1)
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 1)
         }
-        if (binding.snacksCrossImg.isSelected) {
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 0)
+        if (binding.snacksCrossImg.isSelected && binding.snacksCrossImg.isEnabled) {
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_SN, 0)
         }
-        if (binding.checkbox.isChecked) {
+        if (binding.checkbox.isChecked && binding.checkbox.isEnabled) {
             point++
-            prefs.setIntData(getTodayDateAsString() + AppPreference.MORNING_OFF_WO, 1)
+            changeDetect++
+            prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.MORNING_OFF_WO, 1)
         }
-
         Log.d("pointCounter", "calculateUserPoint: $point")
+
+        if (changeDetect > 0) {
+            checkPreference()
+            Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_LONG)
+                .show()
+        } else {
+            Toast.makeText(requireContext(), "No change found !", Toast.LENGTH_LONG)
+                .show()
+        }
     }
 
     private fun redirectUserToVideoPage(videoId: String?) {

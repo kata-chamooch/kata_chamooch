@@ -41,6 +41,7 @@ class DinnerOffFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         DataRepository.getFoodItemsFromDb("fri", type, ::setDataToTheView)
+        checkPreference()
         getTimeFromPref()
         handleViewClick()
     }
@@ -113,7 +114,7 @@ class DinnerOffFragment : Fragment() {
             resetTimer()
         }
         binding.videoLinkBtn.setOnClickListener {
-            DataRepository.getWorkOutVideoLink(datePrefix, type, ::redirectUserToVideoPage)
+            DataRepository.getWorkOutVideoLink(datePrefix, ::redirectUserToVideoPage)
         }
 
         binding.saveBtn.setOnClickListener {
@@ -121,37 +122,102 @@ class DinnerOffFragment : Fragment() {
         }
     }
 
+    private fun checkPreference() {
+        val dinnerOffBF =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_BF)
+        if (dinnerOffBF != -1) {
+            binding.morningCheckImg.isEnabled = false
+            binding.morningCrossImg.isEnabled = false
+            if (dinnerOffBF == 1) {
+                binding.morningCheckImg.isSelected = true
+            } else {
+                binding.morningCrossImg.isSelected = true
+            }
+        }
+
+        val dinnerOffLA =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_LA)
+        if (dinnerOffLA != -1) {
+            binding.launchCheckImg.isEnabled = false
+            binding.launchCrossImg.isEnabled = false
+            if (dinnerOffLA == 1) {
+                binding.launchCheckImg.isSelected = true
+            } else {
+                binding.launchCrossImg.isSelected = true
+            }
+        }
+
+        val dinnerOffSN =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_SN)
+        if (dinnerOffSN != -1) {
+            binding.snacksCheckImg.isEnabled = false
+            binding.snacksCrossImg.isEnabled = false
+            if (dinnerOffSN == 1) {
+                binding.snacksCheckImg.isSelected = true
+            } else {
+                binding.snacksCrossImg.isSelected = true
+            }
+        }
+
+        val dinnerOffWO =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_WO)
+        if (dinnerOffWO != -1) {
+            binding.checkbox.isEnabled = false
+            if (dinnerOffWO == 1) {
+                binding.checkbox.isChecked = true
+            }
+        }
+    }
+
+
     private fun calculateUserPoint() {
         var point = 0
-        if (binding.morningCheckImg.isSelected) {
+        var changeDetect = 0
+        if (binding.morningCheckImg.isSelected && binding.morningCheckImg.isEnabled) {
             point++
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_BF, 1)
         }
-        if (binding.morningCrossImg.isSelected) {
+        if (binding.morningCrossImg.isSelected && binding.morningCrossImg.isEnabled) {
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_BF, 0)
         }
 
-        if (binding.launchCheckImg.isSelected) {
+        if (binding.launchCheckImg.isSelected && binding.launchCheckImg.isEnabled) {
             point++
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_LA, 1)
         }
-        if (binding.launchCrossImg.isSelected) {
+        if (binding.launchCrossImg.isSelected && binding.launchCrossImg.isEnabled) {
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_LA, 0)
         }
 
 
-        if (binding.snacksCheckImg.isSelected) {
+        if (binding.snacksCheckImg.isSelected && binding.snacksCheckImg.isEnabled) {
             point++
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_SN, 1)
         }
-        if (binding.snacksCrossImg.isSelected) {
+        if (binding.snacksCrossImg.isSelected && binding.snacksCrossImg.isEnabled) {
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_SN, 0)
         }
-        if (binding.checkbox.isChecked) {
+        if (binding.checkbox.isChecked && binding.checkbox.isEnabled) {
             point++
+            changeDetect++
             prefs.setIntData(DateManager.getTodayDateAsString() + AppPreference.DINNER_OFF_WO, 1)
         }
         Log.d("pointCounter", "calculateUserPoint: $point")
+
+        if (changeDetect > 0) {
+            checkPreference()
+            Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_LONG)
+                .show()
+        } else {
+            Toast.makeText(requireContext(), "No change found !", Toast.LENGTH_LONG)
+                .show()
+        }
     }
 
     private fun redirectUserToVideoPage(videoId: String?) {
@@ -163,6 +229,7 @@ class DinnerOffFragment : Fragment() {
                 .show()
         }
     }
+
     private fun resetTimer() {
         Log.d("Logger", "resetTimer: called")
         binding.countdownTxt.text = "00:00:00"

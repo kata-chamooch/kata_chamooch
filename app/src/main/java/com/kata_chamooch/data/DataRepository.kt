@@ -54,7 +54,6 @@ object DataRepository {
 
     fun getWorkOutVideoLink(
         datePrefix: String,
-        type: String,
         callback: (videoId: String?) -> Unit
     ) {
         val ref = mainRef.getReference("meal").child(datePrefix).child(VIDEO_LINK_REF)
@@ -64,6 +63,27 @@ object DataRepository {
                 val videoId = dataSnapshot.value as? String
                 Log.d("retData", videoId.toString())
                 callback(videoId)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("retData", databaseError.message + " " + databaseError.details)
+                callback(null)
+            }
+        }
+
+        ref.addListenerForSingleValueEvent(menuListener)
+    }
+
+    fun getBazarImageLink(
+        callback: (imageUrl: String?) -> Unit
+    ) {
+        val ref = mainRef.getReference("bazar").child("bazarListUrl")
+
+        val menuListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val imageUrl = dataSnapshot.value as? String
+                Log.d("retData", imageUrl.toString())
+                callback(imageUrl)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
