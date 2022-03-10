@@ -41,9 +41,37 @@ class DinnerOffFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         DataRepository.getFoodItemsFromDb("fri", type, ::setDataToTheView)
+        checkIsDinnerMethodRunning()
         checkPreference()
         getTimeFromPref()
         handleViewClick()
+    }
+
+    private fun checkIsDinnerMethodRunning() {
+        val method =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.USER_SELECTED_METHOD)
+        if (method == 1) {
+            //user chose dinner off today
+            //disable all
+            Toast.makeText(
+                requireContext(),
+                "You already chose Morning-Off for today!",
+                Toast.LENGTH_LONG
+            )
+                .show()
+            binding.morningCheckImg.isEnabled = false
+            binding.morningCrossImg.isEnabled = false
+            binding.launchCheckImg.isEnabled = false
+            binding.launchCrossImg.isEnabled = false
+            binding.snacksCheckImg.isEnabled = false
+            binding.snacksCrossImg.isEnabled = false
+            binding.checkbox.isEnabled = false
+            binding.saveBtn.isEnabled = false
+            binding.startCounterBtn.isEnabled = false
+            binding.stopCounterBtn.isEnabled = false
+            binding.videoLinkBtn.isEnabled = false
+            resetTimer()
+        }
     }
 
     private fun setDataToTheView(data: Map<String, String>?, msg: String?) {
@@ -212,6 +240,10 @@ class DinnerOffFragment : Fragment() {
 
         if (changeDetect > 0) {
             checkPreference()
+            prefs.setIntData(
+                DateManager.getTodayDateAsString() + AppPreference.USER_SELECTED_METHOD,
+                2
+            )
             Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_LONG)
                 .show()
         } else {

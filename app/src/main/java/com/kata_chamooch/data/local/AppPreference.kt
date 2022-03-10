@@ -20,6 +20,8 @@ class AppPreference(context: Context) {
         const val MORNING_OFF_SN = "morning-sn"
         const val MORNING_OFF_DI = "morning-di"
         const val MORNING_OFF_WO = "morning-wo"
+
+        const val USER_SELECTED_METHOD = "selected-method"
     }
 
     private val preferences: SharedPreferences =
