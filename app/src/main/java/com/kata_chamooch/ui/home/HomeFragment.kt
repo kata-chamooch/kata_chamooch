@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.kata_chamooch.databinding.FragmentHomeBinding
+import android.content.Intent
+import com.kata_chamooch.core.Constant
+import com.kata_chamooch.ui.WebActivity
+
 
 class HomeFragment : Fragment() {
 
@@ -17,11 +21,21 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        return root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.userGuide.setOnClickListener {
+            val intent = Intent(activity, WebActivity::class.java)
+            intent.putExtra(Constant.KEY_GUIDE_URL,
+                "https://www.journaldev.com/14207/android-passing-data-between-fragments")
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

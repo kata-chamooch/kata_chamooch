@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KataChamooch">
         <activity
+            android:name=".ui.WebActivity"
+            android:label="User guide"
+            android:exported="false" />
+        <activity
             android:name=".LauncherScreen"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
