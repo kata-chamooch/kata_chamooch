@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         binding.userGuide.setOnClickListener {
             val intent = Intent(activity, WebActivity::class.java)
             intent.putExtra(Constant.KEY_GUIDE_URL,
-                "https://www.journaldev.com/14207/android-passing-data-between-fragments")
+                "https://docs.google.com/document/d/12WvyjqlY5-_PrPPKWJuv0vp4NVIpBa5wxsxoL2dc_CA/edit?usp=sharing")
             startActivity(intent)
         }
     }
