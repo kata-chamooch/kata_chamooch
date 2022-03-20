@@ -11,17 +11,20 @@ class AppPreference(context: Context) {
     companion object {
         const val MORNING_OFF_START_TIME = "morning-off-start-time"
         const val DINNER_OFF_START_TIME = "dinner-off-start-time"
-        const val DINNER_OFF_BF = "dinner-bf"
-        const val DINNER_OFF_LA = "dinner-la"
-        const val DINNER_OFF_SN = "dinner-sn"
-        const val DINNER_OFF_WO = "dinner-wo"
+        const val DINNER_OFF_BF = "dinner-off-breakfast"
+        const val DINNER_OFF_LA = "dinner-off-launch"
+        const val DINNER_OFF_SN = "dinner-off-snacks"
+        const val DINNER_OFF_WO = "dinner-off-workout"
 
-        const val MORNING_OFF_LA = "morning-la"
-        const val MORNING_OFF_SN = "morning-sn"
-        const val MORNING_OFF_DI = "morning-di"
-        const val MORNING_OFF_WO = "morning-wo"
+        const val MORNING_OFF_LA = "morning-off-launch"
+        const val MORNING_OFF_SN = "morning-off-snacks"
+        const val MORNING_OFF_DI = "morning-off-dinner"
+        const val MORNING_OFF_WO = "morning-off-workout"
 
         const val USER_SELECTED_METHOD = "selected-method"
+        const val USER_TODAY_ITEM_POINT = "user-today-item-point"
+        const val USER_TODAY_POINT = "user-today-point"
+        const val USER_TOTAL_POINT = "user-total-point"
     }
 
     private val preferences: SharedPreferences =

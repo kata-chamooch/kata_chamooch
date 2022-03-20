@@ -33,6 +33,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/todayPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/box_border"
@@ -64,6 +65,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/totalPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/box_border"

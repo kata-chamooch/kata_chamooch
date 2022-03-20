@@ -22,6 +22,12 @@ object DateManager {
 
     fun getTodayAsString(): String = simpleDateFormat.format(Date())
     fun getTodayDateAsString(): String = simpleDateFormatTwo.format(Date())
+    fun getYesterdayDateString(): String {
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.add(Calendar.DATE, -1)
+        return simpleDateFormatTwo.format(calendar.time)
+    }
+
     private fun getTodayAsDate(dateInString: String): Date? = simpleDateFormat.parse(dateInString)
 
     fun getDifference(startDateInString: String, endDateInString: String): Long {
@@ -29,7 +35,7 @@ object DateManager {
         val endDate = getTodayAsDate(endDateInString)
 
         Log.d(TAG, "getDifference: $startDateInString $endDateInString")
-        
+
         if (startDate != null && endDate != null) {
             var different = endDate.time - startDate.time
             val secondsInMilli: Long = 1000

@@ -244,12 +244,46 @@ class DinnerOffFragment : Fragment() {
                 DateManager.getTodayDateAsString() + AppPreference.USER_SELECTED_METHOD,
                 2
             )
+            calculateAndUpdateTodayPoint(point)
+            calculateTotalPoint(point)
+
             Toast.makeText(requireContext(), "Data saved successfully", Toast.LENGTH_LONG)
                 .show()
         } else {
             Toast.makeText(requireContext(), "No change found !", Toast.LENGTH_LONG)
                 .show()
         }
+    }
+    private fun calculateTotalPoint(todayPoint: Int) {
+        if (todayPoint > 0) {
+            var savedPoint =
+                prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.USER_TODAY_ITEM_POINT)
+            if (savedPoint == -1) savedPoint = 0
+            val cal = savedPoint + todayPoint
+            prefs.setIntData(
+                DateManager.getTodayDateAsString() + AppPreference.USER_TODAY_ITEM_POINT,
+                cal
+            )
+        }
+    }
+
+    private fun calculateAndUpdateTodayPoint(point: Int) {
+        if (point == 0) return
+        //calculate today point
+        val preCal: Float = point / 4f
+        val todayPoint: Int = (preCal * 100).toInt()
+        Log.d("pointCounter", "todays point $todayPoint")
+        val savedPoint =
+            prefs.getIntData(DateManager.getTodayDateAsString() + AppPreference.USER_TODAY_POINT)
+        val totalTodayPoint = if (savedPoint == -1)
+            todayPoint
+        else (todayPoint + savedPoint)
+        Log.d("pointCounter", "todays point tot$todayPoint $totalTodayPoint")
+
+        prefs.setIntData(
+            DateManager.getTodayDateAsString() + AppPreference.USER_TODAY_POINT,
+            totalTodayPoint
+        )
     }
 
     private fun redirectUserToVideoPage(videoId: String?) {
